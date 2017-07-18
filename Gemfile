@@ -12,6 +12,8 @@ gem 'rails', '~> 5.0.2'
 #gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+# fixing the problem of sqlite3 still in database.yml
+gem 'rails_12factor'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
