@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Overlay Maps</title>
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+  <link rel="stylesheet" href="scripts/ol.css" type="text/css">
+  <script src="scripts/ol.js"></script>
+
+  <link rel="stylesheet" href="scripts/mpo.css" type="text/css">
+  <script src="scripts/MPO_ImageObject.js"></script>
+  <script src="scripts/MPO_functions.js"></script>
+  <script src="scripts/FileDropBox.js"></script>
+  <script src="scripts/DragDrop.js"></script>
+  <style>
+  .inputTextBox {
+    font-size: 12px;
+  }
+
+  .overlayImageDiv {
+    height: 87px;
+    margin: 6px;
+    border: solid black 2px;
+  }
+
+  .overlayImageDiv_Image {
+    height: 75px;
+    width: 125px;
+    margin: 3px;
+    padding: 6px;
+    border: solid black 2px;
+    float: left;
+  }
+
+  .overlayImageDiv_Info {
+    height: 75px;
+    width: 140px;
+    margin: 3px;
+    padding: 6px;
+    float: right;
+  }
+  </style>
+
+  <script>
+  var imagesOnMap = new Array();
+  var currentImageObject = null;
+
+  function BackgroundMapObject(locked, viewport) {
+    this.locked = locked;
+    this.viewport = viewport;
+  }
+
+  BackgroundMapObject.prototype.change = function(locked, viewport) {
+    this.locked = locked;
+    this.viewport = viewport;
+  };
+
+  var backgroundMap = new BackgroundMapObject(false, null);
+
+  $(document).ready(function() {
+    baseLayer = new ol.layer.Tile({
+      source: new ol.source.OSM()
+    });
+
+    mapOb = new ol.Map({
+      interactions: ol.interaction.defaults().extend([new app.Drag()]),
+      layers: [baseLayer],
+      target: 'mapDiv',
+      view: new ol.View({
+        center: ol.proj.transform([-64.766667, 32.283333], 'EPSG:4326', 'EPSG:3857'),
+        zoom: 13,
+      }),
+    });
+
+    mapOb.getView().on("change:resolution", function() {
+      if (currentImageObject != null) {
+        ol.style.IconImageCache.clear();// Why doesn't this work???
+        currentImageObject.displayImage();
+      }
+    });
+
+    mapOb.addControl(new ol.control.ScaleLine({
+      units: 'us'
+    })
+  );
+      readArticle();
+});
+  var mapData =   [
+      [
+          {
+              "instanceType":"StamenMap",
+              "label":"watercolor",
+              "title": "title of map1",
+              "desciption" : "desciption of map1",
+              "author" : "author of map1"
+          },
+          {
+              "instanceType":"StamenMap",
+              "label":"terrain-lines"
+          },
+          {
+              "instanceType":"StamenMap",
+              "label":"terrain-labels"
+          }
+      ],
+      [
+          {
+              "instanceType":"XYZMap",
+              "url":"https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              "title": "title of map2",
+              "desciption" : "desciption of map2",
+              "author" : "author of map2"
+          }
+      ],
+      [
+          {
+              "instanceType":"StamenMap",
+              "label": "terrain-background",
+              "title": "title of map3",
+              "desciption" : "desciption of map3",
+              "author" : "author of map3"
+          },
+          {
+              "instanceType":"StamenMap",
+              "label":"terrain-lines"
+          },
+          {
+              "instanceType":"StamenMap",
+              "label":"terrain-labels"
+          }
+      ],
+      [
+          {
+              "instanceType":"StamenMap",
+              "label": "toner-hybrid",
+              "title": "title of map4",
+              "desciption" : "desciption of map4",
+              "author" : "author of map4"
+          },
+          {
+              "instanceType":"StamenMap",
+              "label": "toner-labels"
+          }
+      ]
+  ]
+
+
+</script>
+
+</head>
+
+<body>
+
+  <div id="titleWindow">
+    <div id="appTitle">
+      <h1>Map Picture Overlay <br> Application</h1>
+      </div>
+      <div id="appMenu">
+        <br><br>
+        <!--<button id = "saveToDB" onclick = saveToFile()>save</button> -->
+        file home
+      </div>
+    </div>
+
+    <div id="mainWindow" style="overflow-y:scroll">
+      <div id="applicationOptions">
+        <!--<div style="margin: 6px; border: solid black 2px; padding:6px;">-->
+          <!--Background Map-->
+          <!--<image id="mapOptionsSet" src="checkbox_unchecked.png" />-->
+          <!--<label class="switch">-->
+            <!--<input type="checkbox" id="mapOptionsBox" onChange="showMapOptions();">-->
+            <!--<div class="slider round"></div>-->
+          <!--</label>-->
+
+          <!--<div id="mapOptions" style="display:none;">-->
+
+            <!--<p id="mapOptionsText">Set the background map you wish to use, and press the save-->
+              <!--button.  </p>-->
+
+              <!--<input type="button" id="mapOptionsButton" value="Save" onClick="saveMapOptions()" />-->
+              <!--<input type="button" id="mapOptionsAdvanced" value="Advanced" onClick="alert('tdb')" />-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <div id="mapImageControlPanel" style="border: solid black 2px; display:none; margin:6px;">
+            Edit/Show Image
+            <div id="dropbox" style="border: 3px dashed black; width: 200px; height: 90px; margin: 6px; padding:3px;">
+              <img src="" height="75" id="filePreview" alt="Drag and drop image to this box -- Be careful ont to drop the picture outside of the box. ">
+            </div>
+            <div style="margin:5px">
+              <form id="filenameform">
+                <p> Title:
+                  <input type="text" class="inputTextBox" id="imageFileTitle" size="25" /><br>
+                </p>
+                <p> Image attribution:
+                  <input type="text" class="inputTextBox" id="imageFileSource" size="25" /><br>
+                </p>
+
+                <div style="background-color: white; width:160px; float:left;" >
+                  Adjust the opacity<br />
+                  <input type="range" id="newOpacity" value="50" min="0" max="100" onChange="changeOpacity()" /><BR />
+                </div>
+                <div style="background-color: white; width:160px; float:right;" >
+                  Adjust the size<br />
+                  <input type="range" id="newSize" value="50" min="0" max="200" onChange="changeSize()" /><BR />
+                  <input id = "inputSize" min = "0" max = "100" onChange = "changeSizeText()"/><BR />
+                </div>
+                <br>
+                <div style="display:block;">
+                  To move image,use the shift-left mouse and drag the image
+                </div>
+
+                <input type="button" value="save" onClick = "saveImageEdit();" />
+                <input type="button" value="cancel" onClick="cancelImageEdit();" />
+                <input type="button" value="move file to local" />
+              </form>
+            </div>
+          </div>
+
+          <div id="mapImages" style="margin: 6px; border: solid black 2px; padding: 6px; height:675px; overflow-y: scroll">
+            Images
+            <label class="switch">
+              <input type="checkbox" id="mapImagesBox" onChange="showImagesOptions();">
+              <div class="slider round"></div>
+            </label>
+
+            <div id="mapImages_Images" style="display:none">
+              <!--<p id="mapImagesText">You cannot add images until the map is set </p>-->
+              <br><input type="button" id="mapAddImagesButton" value="Add Image" onClick="showImageControlPanel(-1)";>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 12px;" >
+          <div id="mapDiv" class="map" style="display:table-cell; width:900px; height:696px; border:solid black 2px;">
+          </div>
+        </div>
+      </div>
+    </body>
+    </html>

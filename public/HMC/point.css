@@ -1,0 +1,352 @@
+	 header {
+      background-color : #000040;
+		  background-image: url("border.png");
+	    color :AliceBlue;
+		  width:100%;
+		  height:20%;
+		  font-family: Tahoma, Verdana, Segoe, sans-serif;
+	 }
+  
+	 header p {
+	    font-size : 150%;
+	 }
+
+	 .header-icon {
+	 	 display : inline-block;
+	 }
+
+	 .header-desc {
+	   display : inline-block;
+	 }
+
+	 .header-menu {
+	   display : inline-block;
+	   float: right;
+	   margin : 50px 10px 0px 10px;
+	 }
+   
+	 ul {
+		 list-style-type: none;
+		 margin:0;
+		 padding:0;
+		 overflow:hidden;
+	}
+ 
+	li {
+		 float: right;
+	}
+ 
+	li a {
+ 		display:block;
+		color: white;
+		text-align: center;
+		padding: 8px 12px;
+		text-decoration: none;
+		font-size:150%;
+		border-radius:8px;
+	}
+ 
+	li a:hover {
+		background-color: #ccccff;
+	}
+
+  #inputForm {
+		 display:inline-block;
+		 padding-left:20px;
+		 height: 100%;
+  }
+  
+  #sideNavOpen {
+    overflow-x:hidden;
+    overflow-y:auto;
+    position: fixed;
+  }
+  
+	.sidenav {
+		height:80%;
+		width: 0;	
+		z-index: 1;
+		background: linear-gradient(to bottom, #708090 0%, #AFEEEE 100%);
+		transition:0.5s;
+		padding-top:20px;
+	}
+	
+	.sidenav a {
+		padding: 8px 8px 8px 32px;
+		font-size: 25px;
+		color: #f1f1f1;
+		transition:0.3s;
+	}
+	
+	.sidenav a:hover, offcanvas a:focus{
+		color: #ffd470;
+	}
+	
+	 .closebtn {
+    position: absolute;
+		top:0;  
+		margin-left: 170px;
+	}
+	
+	 #main {
+		transition: margin-left .5s;
+		padding-left:16px;
+		padding-top: 5px;	
+	}
+	
+	#toolbar {
+		color: SlateGrey;
+		width: 5%;
+		float: left;
+		display: inline-block;
+	}
+	
+ #toolbar i:hover{
+  color: black;
+  margin: 2px;
+  
+  }
+  
+  #drawToggle p{
+    font-weight: bold;
+    float:left;
+  }
+	#map {
+		 float:right;
+		 width:95%;
+     height: 80%;
+   }
+	
+	@media screen and (max-height: 450px) {
+		.sideNav {padding-top:15px;}
+		.sideNav a {font-size: 18px;}
+	}
+  .information p {
+    font-weight:bold;
+  }
+  
+  .baseMapToggle {
+    float:right;
+  }
+  .baseMap p{
+    font-weight: bold;
+  float:left;
+  }
+  
+  
+  .pictureMap1 p{
+  font-weight: bold;
+  float:left;
+  }
+
+  .pictureCollapseOne {
+    float: left;
+  }
+ /* 
+  .collapseTwo {
+    text-align: right;
+  }
+  .collapseTwo .radio2 {
+    float: left;
+  }*/
+  .opacity1 {
+  text-align: left;
+  display: inline-block;
+  vertical-align: top;
+  margin: 4px 2px;
+  padding-bottom: 5px;
+  position:relative;
+  }
+
+  .opacity1 p {
+    font-weight:bold;
+  }
+  .opacity1 .tooltiptext {
+    visibility: hidden;
+    width: 25px;
+    background-color: slategrey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 13px;
+    left: 108%;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  .opacity1:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.opacity1 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent slategrey transparent transparent;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+b{
+    float: left;
+}
+
+ /* The switch - the box around the slider */
+ .switch {
+     position: relative;
+     display: inline-block;
+     margin-bottom: 0px;
+     margin-left: 10px;
+     /*margin-top: 5px;*/
+     width: 30px;
+     height: 17px;
+ }
+
+ /* Hide default HTML checkbox */
+ .switch input {
+     display:none;
+ }
+
+ /* The slider */
+ .slider.round {
+     position: absolute;
+     cursor: pointer;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background-color: #ccc;
+     -webkit-transition: .4s;
+     transition: .4s;
+ }
+
+ .slider.round:before {
+     position: absolute;
+     content: "";
+     height: 13px;
+     width: 13px;
+     left: 2px;
+     bottom: 2px;
+     background-color: white;
+     -webkit-transition: .4s;
+     transition: .4s;
+ }
+
+ input:checked + .slider {
+     background-color: #009000;
+ }
+
+ input:focus + .slider {
+     box-shadow: 0 0 1px #009000;
+ }
+
+ input:checked + .slider:before {
+     -webkit-transform: translateX(13px);
+     -ms-transform: translateX(13px);
+     transform: translateX(13px);
+ }
+
+ /* Rounded sliders */
+ .slider.round {
+     border-radius: 17px;
+ }
+
+ .slider.round:before {
+     border-radius: 50%;
+ }
+
+ /*drop down*/
+
+ .dropdown {
+     position: relative;
+     display: inline-block;
+ }
+
+ .dropdown-content {
+     display: none;
+     position: absolute;
+     background-color: #f9f9f9;
+     min-width: 160px;
+     overflow: auto;
+     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+     z-index: 1;
+ }
+
+ .dropdown-content a {
+     color: black;
+     padding: 12px 16px;
+     text-decoration: none;
+     display: block;
+ }
+
+ .dropdown a:hover {background-color: #f1f1f1}
+
+ .show {display:block;}

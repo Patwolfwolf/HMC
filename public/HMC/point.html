@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="point.css" type="text/css">
+  <link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+  <script src="https://openlayers.org/en/v3.20.1/build/ol.js" type="text/javascript"></script>
+
+  <script src="point.js" type="text/javascript"></script>
+  <script src="FileSaver/FileSaver.js" type="text/javascript"></script>
+  <title>GRI Map</title>
+</head>
+<body onclick="show_coords(event)">
+  <header>
+    <div class="header-icon">
+      <image src="GRI_logo.png" />
+    </div>
+    <div class="header-desc">
+      <h1>GRI Comparator</h1>
+      <p class="header-p">
+        simple GRI map comparator
+      </p>
+    </div>
+    <div class="header-menu">
+      <ul>
+        <li><a href="http://public.gettysburg.edu/~furu01/bermuda_maps/">File</a></li>
+        <li><a href="http://chuckkann.com">Home</a></li>
+        <li><a href="#" onclick="deleteAll()">Delete</a>
+        <li><a href="#" class='dropbtn' onclick="showDrop()">Load</a>
+          <div id="myDropdown" class="dropdown-content">
+          </div>
+        <li><a href="#" onclick="saveAll()">Temporarily Save</a>
+      </ul>
+    </div>
+  </header>
+
+  <div id="overallContainer">
+    <div id="sideNavOpen" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa fa-close" style="font-size:24px"></i></a>
+      <div id="inputForm">
+        <!--<div id="information2">-->
+        <h5><b>Map info</b>
+
+          <label class="switch">
+            <input type="checkbox" id = "mapInfoCheck" checked>
+            <div class="slider round"></div>
+          </label></h5>
+
+          <div id = "information"  aria-expanded="true" class="collapse in" >
+            <div id = "mapInfo"></div>
+            <div id = "picInfo1"></div>
+            <div id = "picInfo2"></div>
+
+          </div>
+          <div class="baseMap">
+            <h5><b>Select the base map</b>
+              <!--<div class="baseMapToggle">-->
+              <label class="switch">
+                <input type="checkbox" checked id = "mapCheck">
+                <div class="slider round"></div>
+              </label></h5>
+              <div id="collapse"></div>  <!--collapse-->
+            </div>  <!--baseMap> -->
+          </br>
+          <div id = "Form">
+            <div class="pictureMap1" >
+              <h5><b>Select image map</b>
+                <label class = 'switch'>
+                  <input type="checkbox" id = "checkbox1" onchange = "removeMap(1)">
+                  <div class="slider round"></div>
+                </label></h5>
+                <div id="collapse1" aria-expanded="false" class="collapse"></div>  <!--collapse1-->
+                <div id = "opacity1"class="opacity1">
+                  <h6><b>Opacity</b>
+                    <input class="slider" type="range" id="newOpacity1" value="100" min="0" max="100" section = "1"/>
+                    <span class="tooltiptext" id="range">100</span></h6>
+                  </div>  <!--opacity1-->
+                </div>  <!--pictureMap1-->
+              </div>
+              <div class="drawToggle">
+                <p style="font-weight: bold">Draw feature</p>
+                <div class="btn-group btn-group-justified">
+                  <div class="btn-group">
+                    <button type="button" id= "draw" class="btn btn-warning">Draw <i class="fa fa-paint-brush"></i></button>
+                  </div>
+                  <div class="btn-group">
+                    <button type="button" id= "select" class="btn btn-primary">Select <i class="fa fa-mouse-pointer"></i></button>
+                  </div>
+                </div> <!--btn-group btn-group-justified-->
+              </div><!--drawToggle-->
+
+              <div id= "swiper">
+                <h5><b>ImageSwiper</b>
+                  <label class = 'switch'>
+                    <input type="checkbox" id = "swipeOF">
+                    <div class="slider round"></div>
+                  </label></h5>
+                </div> <!--swiper-->
+              </div> <!--inputform-->
+              <!--</div> &lt;!&ndash;inputForm&ndash;&gt;-->
+            </div>    <!-- sideNavOpen-->
+            <div id="main">
+              <div id="toolbar">
+                <a data-toggle="tooltip" data-placement="top" title="Open side Navigation bar"><span style="font-size:30px;cursor:pointer" onclick="openNav()"><div id="open"><i class="fa fa-navicon" style="font-size:24px"></i></div></span></a>
+                <a data-toggle="tooltip" data-placement="top" title="Delete a line"><span id="delete" style="font-size:30px;cursor:pointer"><i class="fa fa-trash" style="font-size:24px"></i></span></a> </br>
+                <a data-toggle="tooltip" data-placement="top" title="Display table"><span id="display" style="font-size:30px;cursor:pointer"><i class="fa fa-table" style="font-size:24px"></i></span></a></br>
+                <div id="myModal" class="modal">
+                  <div class="modal-content">
+                    <div class="modal-top">
+                      <a href="#">
+                        <span class="glyphicon glyphicon-remove" onclick="closeModal()"></span>
+                      </a>
+                    </div> <!--modal-top-->
+                    <div class="modal-body"  id = "data" >
+                      <table class = "table table-hover" id="table">
+                        <thead>
+                          <tr>
+                          </tr>
+                        </thead>
+                        <tbody id="tableContent"></tbody>
+                      </table>
+                    </div> <!--modal-body-->
+                  </div> <!--modal-content-->
+                </div> <!--myModal-->
+                <a data-toggle="tooltip" data-placement="top" title="Save to CSV file"><span id="file" style="font-size:30px;cursor:pointer"><i class="fa fa-save" style="font-size:24px"></i></span></a></br>
+              </div>
+              <div class="baseMapToggle" id="map">
+                <!--<div class="baseMapToggle">-->
+                <div id = "collapseSwiper" >
+                  <!--Inverse<input type="checkbox" data-toggle="toggle"  id = "inverse">-->
+                  Inverse<label class = 'switch'>
+                    <input type="checkbox" id = "inverse">
+                    <div class="slider round"></div></label>
+                    <input id="swipe" type="range" style="width: 100%" >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>    <!-- main-->
+        </div>  <!-- overallContainer-->
+      </body>
+      </html>

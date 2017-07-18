@@ -1,0 +1,134 @@
+[
+  [
+    [
+      {
+        "instanceType":"XYZMap",
+        "url":"https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        "title": "title of map2",
+        "description" : "description of map2",
+        "author" : "author of map2"
+      }
+    ],
+    [
+      {
+        "instanceType":"StamenMap",
+        "label": "toner-hybrid",
+        "title": "title of map4",
+        "description" : "description of map4",
+        "author" : "author of map4"
+      },
+      {
+        "instanceType":"StamenMap",
+        "label": "toner-labels"
+      }
+    ]
+  ],
+  [
+    {
+      "url":"bermuda_maps/FirstOrder.png",
+      "title": "FirstOrder",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture6",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/SecondOrder.png",
+      "title": "SecondOrder",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture7",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/ThirdOrder.png",
+      "title": "ThirdOrder",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture6",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/bermudapoints.png",
+      "title": "bermudapoints",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/ValkReef.png",
+      "title": "ValkReef",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/CoronelloiReef.png",
+      "title": "CoronelloiReef",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "desciption" : "desciption of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/KeulenReef.png",
+      "title": "KeulenReef",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "desciption" : "desciption of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/NorwoodReef.png",
+      "title": "NorwoodReef",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/SomerReef.png",
+      "title": "SomerReef",
+      "extent":[-64.94448996006165,32.12821627606253,-64.59292746006163,32.51269122410004],
+      "description" : "description of picture8",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/Bermuda.png",
+      "title": "Bermuda",
+      "extent":[-65.16460416313215,32.14360504329444,-64.3818282842259,32.50913142357412],
+      "center":[32.283333, -64.766667],
+      "description" : "description of picture1",
+      "author" : "author of picture1"
+    },
+    {
+      "url":"bermuda_maps/Coronelloi.png",
+      "title": "Coronelloi",
+      "extent": [-65.02001785515542,32.041942232820176,-64.51876663445229,32.59014418807271],
+      "description" : "description of picture2",
+      "author" : "author of picture2"
+    },
+    {
+      "url":"bermuda_maps/Keulen.png",
+      "title": "Keulen",
+      "extent":[-65.01603553771973,32.04818719263044,-64.52439735412598,32.58586997641973],
+      "description" : "description of picture3",
+      "author" : "author of picture3"
+    },
+    {
+      "url":"bermuda_maps/Norwood.png",
+      "title": "Norwood",
+      "extent":[-65.00903335239481,32.05504915572338,-64.52838149692604,32.580711890687084],
+      "description" : "description of picture4",
+      "author" : "author of picture4"
+    },
+    {
+      "url":"bermuda_maps/somers.png",
+      "title": "somers",
+      "extent":[-65.01652988092265,32.049511047887435,-64.51871188775858,32.59392413525826],
+      "description" : "description of picture5",
+      "author" : "author of picture5"
+    },
+    {
+      "url":"bermuda_maps/ValkSchenk.png",
+      "title": "ValkSchenk",
+      "extent":[-65.02022837877942,32.04333004409264,-64.5189771580763,32.591523624952416],
+      "description" : "description of picture5",
+      "author" : "author of picture5"
+    }
+  ]
+]
